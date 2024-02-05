@@ -4,7 +4,7 @@
     {
         public int m_nro1;
         public int m_nro2;
-        public int yhteenLaskuTulos;
+        public int miinusTulos;
 
         private Luvut() { }
 
@@ -31,16 +31,16 @@
         }
         */
 
-        public void LaskeYhteen()
+        public void Vahenna()
         {
-            yhteenLaskuTulos = m_nro1 + m_nro2;
+            miinusTulos = m_nro1 - m_nro2;
         }
 
         public static void Main()
         {
             Luvut Luvut1 = new Luvut(1, 3);
-            Luvut1.LaskeYhteen();
-            Console.WriteLine(Luvut1.yhteenLaskuTulos);
+            Luvut1.Vahenna();
+            Console.WriteLine(Luvut1.miinusTulos);
         }
     }
 }
