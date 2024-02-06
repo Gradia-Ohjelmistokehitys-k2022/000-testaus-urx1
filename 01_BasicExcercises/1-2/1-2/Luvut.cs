@@ -5,6 +5,7 @@
         public int m_nro1;
         public int m_nro2;
         public int miinusTulos;
+        public int potenssiTulos;
 
         private Luvut() { }
 
@@ -34,13 +35,26 @@
         public void Vahenna()
         {
             miinusTulos = m_nro1 - m_nro2;
+            Console.WriteLine(miinusTulos);
+        }
+
+        public void Potenssi()
+        {
+            if (m_nro1 > 100)
+                Console.WriteLine("Luku saa olla max 100");
+            else
+            {
+                m_nro2 = m_nro1;
+                potenssiTulos = m_nro1 * m_nro2;
+                Console.WriteLine(potenssiTulos);
+            }
         }
 
         public static void Main()
         {
-            Luvut Luvut1 = new Luvut(1, 3);
-            Luvut1.Vahenna();
-            Console.WriteLine(Luvut1.miinusTulos);
+            Luvut Luvut1 = new Luvut(111, 0);
+            //Luvut1.Vahenna();
+            Luvut1.Potenssi();
         }
     }
 }

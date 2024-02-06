@@ -55,5 +55,23 @@ namespace LukuTestit
             Assert.AreEqual(odotettuLuku, testinTulos, 0.001, "Virhe vähennyksessä, luvut eivät tuota odotettua lopputulosta.");
 
         }
+
+        [TestMethod]
+        public void YliSata()
+        {
+            int alkuLuku = 100;
+            int toinenLuku = alkuLuku;
+
+            Luvut testiLuvut = new Luvut(alkuLuku, toinenLuku);
+
+            if (alkuLuku > 100)
+            {
+                throw new ArgumentOutOfRangeException("Luku ei saa olla yli 100.");
+            }
+            else
+            {
+                testiLuvut.Potenssi();
+            }
+        }
     }
 }
