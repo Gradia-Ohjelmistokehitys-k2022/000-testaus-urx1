@@ -55,9 +55,24 @@ namespace LukuTestit
             Assert.AreEqual(odotettuLuku, testinTulos, 0.001, "Virhe vähennyksessä, luvut eivät tuota odotettua lopputulosta.");
 
         }
+        [TestMethod]
+        public void P_LukuTasmaa()
+        {
+            int alkuLuku = 5;
+            int toinenLuku = alkuLuku;
+            int odotettuLuku = 25;
+
+            Luvut testiLuvut = new Luvut(alkuLuku, toinenLuku);
+
+            testiLuvut.Potenssi();
+
+            int testinTulos = testiLuvut.potenssiTulos;
+
+            Assert.AreEqual(odotettuLuku, testinTulos, 0.001, "Virhe potenssilaskussa, luvut eivät tuota odotettua lopputulosta.");
+        }
 
         [TestMethod]
-        public void YliSata()
+        public void P_YliSata()
         {
             int alkuLuku = 100;
             int toinenLuku = alkuLuku;
@@ -72,6 +87,23 @@ namespace LukuTestit
             {
                 testiLuvut.Potenssi();
             }
+        }
+
+        [TestMethod]
+        public void P_Negatiivinen()
+        {
+            int alkuLuku = -5;
+            int toinenLuku = alkuLuku;
+            int odotettuLuku = -25;
+
+            Luvut testiLuvut = new Luvut(alkuLuku, toinenLuku);
+
+            testiLuvut.Potenssi();
+
+            int testinTulos = testiLuvut.potenssiTulos;
+
+            Assert.AreEqual(odotettuLuku, testinTulos, 0.001, "Virhe vähennyksessä, luvut eivät tuota odotettua lopputulosta.");
+
         }
     }
 }

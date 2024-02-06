@@ -4,6 +4,7 @@
     {
         public int m_nro1;
         public int m_nro2;
+        public int kerroin;
         public int miinusTulos;
         public int potenssiTulos;
 
@@ -41,10 +42,28 @@
         public void Potenssi()
         {
             if (m_nro1 > 100)
+            {
                 Console.WriteLine("Luku saa olla max 100");
+            }
+            if (m_nro1 < 0)
+            {
+                m_nro1 = System.Math.Abs(m_nro1);
+                m_nro2 = m_nro1;
+                int juuri = m_nro1 * m_nro2;
+                potenssiTulos = juuri * -1;
+                Console.WriteLine(potenssiTulos);
+            }
             else
             {
                 m_nro2 = m_nro1;
+                /*
+                kerroin = (m_nro1-1);
+                for (int i = 0; i < (kerroin); i++)
+                {
+                    potenssiTulos = m_nro1 += m_nro2;
+                }
+                //potenssiTulos = m_nro1 * m_nro2;
+                */
                 potenssiTulos = m_nro1 * m_nro2;
                 Console.WriteLine(potenssiTulos);
             }
@@ -52,7 +71,7 @@
 
         public static void Main()
         {
-            Luvut Luvut1 = new Luvut(111, 0);
+            Luvut Luvut1 = new Luvut(5, 0);
             //Luvut1.Vahenna();
             Luvut1.Potenssi();
         }
