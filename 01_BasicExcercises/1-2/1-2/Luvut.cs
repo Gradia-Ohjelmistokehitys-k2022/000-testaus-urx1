@@ -108,7 +108,7 @@
         public static void doubleListaSuurin()
         {
             int i = 0;
-            double[] numeroita = { 4.234, 1.23, 9.1235, 0.23, 10.234 };
+            double[] numeroita = { 4.234D, 1.23D, 9.1235D, 0.23D, 10.234D };
             List<double> m_dLista = new List<double>(numeroita);
             double suurin = m_dLista[0];
             for (i = 0; i < m_dLista.Count; i++)
@@ -120,6 +120,16 @@
             }
             Console.WriteLine(suurin);
         }
+        public static void FloatLista()
+        {
+            int i = 0;
+            float[] numeroita = { 4.234F, 1.23F, 9.1235F, 0.23F, 10.234F };
+            List<float> m_fLista = new List<float>(numeroita);
+            float summa = m_fLista.Sum();
+            float lukumaara = m_fLista.Count();
+            float keskiarvo = summa / lukumaara;
+            Console.WriteLine(keskiarvo);
+        }
 
         public static void Main()
         {
@@ -128,8 +138,9 @@
             //Luvut1.Potenssi();
             //Luvut Luvut2 = new Luvut(-3);
             //Luvut2.NelioJuuri();
-            doubleListaPienin();
-            doubleListaSuurin();
+            //doubleListaPienin();
+            //doubleListaSuurin();
+            FloatLista();
         }
 
 

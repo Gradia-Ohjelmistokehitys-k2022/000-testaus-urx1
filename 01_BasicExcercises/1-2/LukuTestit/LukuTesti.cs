@@ -160,7 +160,7 @@ namespace LukuTestit
                     listanPienin = testiLista[i];
                 }
             }
-        Assert.AreEqual(odotettuLuku, listanPienin, "Virhe loopissa, laskettu luku ei ole listan pienin.");
+            Assert.AreEqual(odotettuLuku, listanPienin, "Virhe loopissa, laskettu luku ei ole listan pienin.");
         }
         [TestMethod]
         public void suurinOnSuurin()
@@ -178,6 +178,17 @@ namespace LukuTestit
                 }
             }
             Assert.AreEqual(odotettuLuku, listanPienin, "Virhe loopissa, laskettu luku ei ole listan pienin.");
+        }
+        [TestMethod]
+        public void onKeskiarvo()
+        {
+            float[] numeroita = { 4.234F, 1.23F, 9.1235F, 0.23F, 10.234F };
+            List<float> m_fLista = new List<float>(numeroita);
+            float odotettuLuku = 5.0103F;
+            float summa = m_fLista.Sum();
+            float lukumaara = m_fLista.Count();
+            float keskiarvo = summa / lukumaara;
+            Assert.AreEqual(odotettuLuku, keskiarvo, "Virhe laskussa, laskettu luku ei ole listan keskiarvo.");
         }
     }
 }
