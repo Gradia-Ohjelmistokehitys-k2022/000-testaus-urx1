@@ -22,11 +22,11 @@ namespace LukuTestit
         }
 
         [TestMethod]
-        public void VahennettavaLukuEiNolla()
+        public void TulosNegatiivinen()
         {
             int alkuLuku = 5;
-            int vahennettavaLuku = 4;
-            int odotettuLuku = 1;
+            int vahennettavaLuku = 10;
+            int odotettuLuku = -5;
 
             Luvut testiLuvut = new Luvut(alkuLuku, vahennettavaLuku);
 
@@ -34,22 +34,16 @@ namespace LukuTestit
 
             int testinTulos = testiLuvut.miinusTulos;
 
-            if (odotettuLuku < alkuLuku || vahennettavaLuku == 0)
-            {
-                return;
-            }
-            else
-            {
-                Assert.ThrowsException<System.ArgumentOutOfRangeException>(() => testinTulos);
-            }
+            Assert.AreEqual(odotettuLuku, testinTulos, 0.001, "Virhe vähennyksessä, luvut eivät tuota odotettua lopputulosta.");
+
 
         }
 
         [TestMethod]
-        public void lukuVahentaa()
+        public void negatiivisetLuvut()
         {
-            int alkuLuku = 5;
-            int vahennettavaLuku = 4;
+            int alkuLuku = -5;
+            int vahennettavaLuku = -6;
             int odotettuLuku = 1;
 
             Luvut testiLuvut = new Luvut(alkuLuku, vahennettavaLuku);
@@ -58,14 +52,7 @@ namespace LukuTestit
 
             int testinTulos = testiLuvut.miinusTulos;
 
-            if (testinTulos > alkuLuku)
-            {
-                Assert.ThrowsException<System.ArgumentOutOfRangeException>(() => testinTulos);
-            }
-            else
-            {
-                return;
-            }
+            Assert.AreEqual(odotettuLuku, testinTulos, 0.001, "Virhe vähennyksessä, luvut eivät tuota odotettua lopputulosta.");
 
         }
     }
