@@ -9,6 +9,7 @@
         public int potenssiTulos;
         public double nelioJuuriTulos;
         public double odotettuLuku;
+        public List<double> m_dLista;
 
         private Luvut() { }
 
@@ -21,6 +22,11 @@
         public Luvut(int nro1)
         { 
             m_nro1 = nro1;
+        }
+
+        public Luvut(List<double> dLista) 
+        {
+            m_dLista = dLista;
         }
         
 
@@ -83,13 +89,49 @@
             Console.WriteLine(nelioJuuriTulos);
         }
 
+        public static void doubleListaPienin()
+        {
+            int i = 0;
+            double[] numeroita = { 4.234, 1.23, 9.1235, 0.23, 10.234 };
+            List<double> m_dLista = new List<double>(numeroita);
+            double pienin = m_dLista[0];
+            for (i = 0; i < m_dLista.Count; i++)
+            {
+                if (pienin > m_dLista[i])
+                {
+                    pienin = m_dLista[i];
+                }
+            }
+                Console.WriteLine(pienin);
+        }
+
+        public static void doubleListaSuurin()
+        {
+            int i = 0;
+            double[] numeroita = { 4.234, 1.23, 9.1235, 0.23, 10.234 };
+            List<double> m_dLista = new List<double>(numeroita);
+            double suurin = m_dLista[0];
+            for (i = 0; i < m_dLista.Count; i++)
+            {
+                if (suurin < m_dLista[i])
+                {
+                    suurin = m_dLista[i];
+                }
+            }
+            Console.WriteLine(suurin);
+        }
+
         public static void Main()
         {
             //Luvut Luvut1 = new Luvut(5, 0);
             //Luvut1.Vahenna();
             //Luvut1.Potenssi();
-            Luvut Luvut2 = new Luvut(-3);
-            Luvut2.NelioJuuri();
+            //Luvut Luvut2 = new Luvut(-3);
+            //Luvut2.NelioJuuri();
+            doubleListaPienin();
+            doubleListaSuurin();
         }
+
+
     }
 }

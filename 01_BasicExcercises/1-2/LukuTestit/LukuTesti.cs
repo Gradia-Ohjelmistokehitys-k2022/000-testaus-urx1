@@ -145,5 +145,39 @@ namespace LukuTestit
             Assert.AreEqual(odotettuLuku.GetType(), typeof(double), "Tulos on v‰‰r‰‰ tyyppi‰.");
 
         }
+        [TestMethod]
+        public void pieninOnPienin()
+        {
+            double[] numeroita2 = { 4.234, 1.23, 9.1235, 0.23, 10.234 };
+            List<double> testiLista = new List<double>(numeroita2);
+            double odotettuLuku = 0.23;
+            int i = 0;
+            double listanPienin = testiLista[0];
+            for (i = 0; i < testiLista.Count; i++)
+            {
+                if (listanPienin > testiLista[i])
+                {
+                    listanPienin = testiLista[i];
+                }
+            }
+        Assert.AreEqual(odotettuLuku, listanPienin, "Virhe loopissa, laskettu luku ei ole listan pienin.");
+        }
+        [TestMethod]
+        public void suurinOnSuurin()
+        {
+            double[] numeroita2 = { 4.234, 1.23, 9.1235, 0.23, 10.234 };
+            List<double> testiLista = new List<double>(numeroita2);
+            double odotettuLuku = 10.234;
+            int i = 0;
+            double listanPienin = testiLista[0];
+            for (i = 0; i < testiLista.Count; i++)
+            {
+                if (listanPienin < testiLista[i])
+                {
+                    listanPienin = testiLista[i];
+                }
+            }
+            Assert.AreEqual(odotettuLuku, listanPienin, "Virhe loopissa, laskettu luku ei ole listan pienin.");
+        }
     }
 }
