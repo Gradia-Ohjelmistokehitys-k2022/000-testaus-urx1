@@ -7,6 +7,8 @@
         public int kerroin;
         public int miinusTulos;
         public int potenssiTulos;
+        public double nelioJuuriTulos;
+        public double odotettuLuku;
 
         private Luvut() { }
 
@@ -15,6 +17,12 @@
             m_nro1 = nro1;
             m_nro2 = nro2;        
         }
+
+        public Luvut(int nro1)
+        { 
+            m_nro1 = nro1;
+        }
+        
 
         /*
         public int Nro1
@@ -69,11 +77,19 @@
             }
         }
 
+        public void NelioJuuri()
+        {
+            nelioJuuriTulos = Math.Sqrt(m_nro1);
+            Console.WriteLine(nelioJuuriTulos);
+        }
+
         public static void Main()
         {
-            Luvut Luvut1 = new Luvut(5, 0);
+            //Luvut Luvut1 = new Luvut(5, 0);
             //Luvut1.Vahenna();
-            Luvut1.Potenssi();
+            //Luvut1.Potenssi();
+            Luvut Luvut2 = new Luvut(-3);
+            Luvut2.NelioJuuri();
         }
     }
 }

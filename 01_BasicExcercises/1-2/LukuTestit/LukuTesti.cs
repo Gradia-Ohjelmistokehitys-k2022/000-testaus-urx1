@@ -35,8 +35,6 @@ namespace LukuTestit
             int testinTulos = testiLuvut.miinusTulos;
 
             Assert.AreEqual(odotettuLuku, testinTulos, 0.001, "Virhe v‰hennyksess‰, luvut eiv‰t tuota odotettua lopputulosta.");
-
-
         }
 
         [TestMethod]
@@ -102,7 +100,49 @@ namespace LukuTestit
 
             int testinTulos = testiLuvut.potenssiTulos;
 
-            Assert.AreEqual(odotettuLuku, testinTulos, 0.001, "Virhe v‰hennyksess‰, luvut eiv‰t tuota odotettua lopputulosta.");
+            Assert.AreEqual(odotettuLuku, testinTulos, 0.001, "Virhe laskussa, luvut eiv‰t tuota odotettua lopputulosta.");
+
+        }
+        [TestMethod]
+        public void N_LukuTasmaa()
+        {
+            int alkuLuku = 3;
+            double odotettuLuku = 1.7320508075688772;
+
+            Luvut testiLuvut = new Luvut(alkuLuku);
+
+            testiLuvut.NelioJuuri();
+
+            double testinTulos = testiLuvut.nelioJuuriTulos;
+
+            Assert.AreEqual(odotettuLuku, testinTulos, 0.001, "Virhe laskussa, luvut eiv‰t tuota odotettua lopputulosta.");
+        }
+        [TestMethod]
+        public void N_Negatiivinen()
+        {
+            int alkuLuku = -5;
+            double odotettuLuku = double.NaN;
+
+            Luvut testiLuvut = new Luvut(alkuLuku);
+
+            testiLuvut.NelioJuuri();
+
+            double testinTulos = testiLuvut.nelioJuuriTulos;
+
+            Assert.AreEqual(odotettuLuku, testinTulos, "Virhe laskussa, luvut eiv‰t tuota odotettua lopputulosta.");
+
+        }
+        [TestMethod]
+        public void N_OnDouble()
+        {
+            var alkuLuku = 3;
+            var odotettuLuku = 1.7320508075688772;
+
+            Luvut testiLuvut = new Luvut(alkuLuku);
+
+            testiLuvut.NelioJuuri();
+
+            Assert.AreEqual(odotettuLuku.GetType(), typeof(double), "Tulos on v‰‰r‰‰ tyyppi‰.");
 
         }
     }
