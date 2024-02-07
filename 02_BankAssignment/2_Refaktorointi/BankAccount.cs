@@ -1,4 +1,6 @@
 ﻿using System;
+using BankCustomerNS;
+
 
 namespace BankAccountNS
 {
@@ -7,20 +9,20 @@ namespace BankAccountNS
     /// </summary>
     public class BankAccount
     {
-        private readonly string m_customerName;
+        private readonly string m_accountOwner;
         private double m_balance;
 
         private BankAccount() { }
 
-        public BankAccount(string customerName, double balance)
+        public BankAccount(string accountOwner, double balance)
         {
-            m_customerName = customerName;
+            m_accountOwner = accountOwner;
             m_balance = balance;
         }
 
         public string CustomerName
         {
-            get { return m_customerName; }
+            get { return m_accountOwner; }
         }
 
         public double Balance
@@ -55,9 +57,9 @@ namespace BankAccountNS
 
         public static void Main()
         {
+            BankCustomer c1 = new BankCustomer("Timo Perkele");
+            Console.WriteLine(c1.m_customerName);
             BankAccount ba = new BankAccount("Mr. Bryan Walton", 11.99);
-
-            ba.Credit(5.77);
             ba.Debit(11.22);
             Console.WriteLine("Current balance is ${0}", ba.Balance);
         }

@@ -5,18 +5,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _1_Yksikkotestit
+namespace BankCustomerNS
 {
-    internal class BankCustomer
+    public class BankCustomer
     {
-        private readonly string m_customerName;
+        public string m_customerName;
         private Array m_accounts;
         private BankCustomer() { }
-        
-        private BankCustomer(string customerName, Array accounts)
+
+        public BankCustomer(string customerName)
+        {
+            m_customerName = customerName;
+        }
+        public BankCustomer(string customerName, Array accounts)
         {
             m_customerName = customerName;
             m_accounts = accounts;
         }
+
     }
 }
