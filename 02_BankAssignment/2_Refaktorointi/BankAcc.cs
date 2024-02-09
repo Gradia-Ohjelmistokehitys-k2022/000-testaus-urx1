@@ -9,8 +9,9 @@ namespace BankAccountNS
 {
     public class BankAccount
     {
+        public int m_accountId;
         public BankCustomer m_accountOwner {  get; set; }
-        public double m_balance { get; set; }
+        public double m_balance;
 
         public BankAccount() { }
 
@@ -27,8 +28,22 @@ namespace BankAccountNS
             double m_balance = balance;
         }
 
-        public static void CreateAccount(BankCustomer accountHolder, double balance)
+        public BankAccount(int accountId, BankCustomer accountOwner, double balance)
+
         {
+            m_accountId = accountId;
+            BankCustomer m_accountOwner = accountOwner;
+            double m_balance = balance;
+        }
+
+        public double GetBalance()
+        {
+            { return m_balance; }
+        }
+
+        public static void CreateAccount(int accountId, BankCustomer accountHolder, double balance)
+        {
+            int m_accountId = accountId;
             BankCustomer m_accountOwner = accountHolder;
             double m_balance = balance;
         }

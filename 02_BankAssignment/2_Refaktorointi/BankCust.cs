@@ -30,10 +30,12 @@ namespace BankCustomerNS
         {
             BankCustomer cust1 = new BankCustomer("Timo Perkele");
             Console.WriteLine(cust1.m_customerName);
-            BankAccount acc1 = new BankAccount(123.23); //palauttaa 0?
+            BankAccount acc1 = new BankAccount(cust1,123.23); //palauttaa 0?
             Console.WriteLine(acc1.m_balance);
-            BankAccount.CreateAccount(cust1, 123.23);
+            //BankAccount.CreateAccount(cust1, 123.23);
             Console.WriteLine(cust1.m_customerName);
+            BankAccount.CreateAccount(1, cust1, 123);
+            Console.WriteLine(cust1.m_bankAccount.ToString());
         }
     }
 }

@@ -42,11 +42,16 @@ namespace BankTests
         public void Debit_WithNegativeAmount()
         {
             double beginningBalance = 11.99;
-            double debitAmount = -4.55;
+            double debitAmount = 4.55;
 
             BankAccount account = new BankAccount("Mr. Bryan Walton", beginningBalance);
 
             account.Debit(debitAmount);
+
+            if (debitAmount < 0)
+            {
+                Assert.ThrowsException<ArgumentOutOfRangeException>(() => account.Balance);
+            }
         }
     }
 }
