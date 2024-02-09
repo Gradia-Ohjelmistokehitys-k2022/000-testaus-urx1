@@ -41,11 +41,17 @@ namespace BankAccountNS
             accountOwner.m_accounts.Add(account);
         }
 
+        public static void DeleteAccount(BankCustomer accountOwner, int deleteId)
+        {
+                var accountToRemove = accountOwner.Accounts.Single(r => r.m_accountId == deleteId);
+                accountOwner.Accounts.Remove(accountToRemove);   
+        }
+
         public static void ShowAccounts(BankCustomer accountOwner)
         {
             foreach (BankAccount m_account in accountOwner.Accounts)
             {
-                Console.WriteLine(accountOwner.m_customerName + " " + m_account.m_accountId + " " + m_account.m_balance);
+                Console.WriteLine(accountOwner.m_customerName + " " + m_account.m_accountId + " " + m_account.m_accountType + " " + m_account.m_balance);
             }
         }
 

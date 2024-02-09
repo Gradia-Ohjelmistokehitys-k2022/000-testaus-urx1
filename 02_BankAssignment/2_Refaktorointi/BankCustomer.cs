@@ -49,6 +49,11 @@ namespace BankCustomerNS
             };
             BankAccount.CreateAccount(1, "Debit", cust1, 234.2);
             BankAccount.CreateAccount(2, "Credit", cust1, 2345.2);
+            BankAccount.CreateAccount(3, "Credit", cust1, 12345.2);
+
+            BankAccount.ShowAccounts(cust1);
+            BankAccount.DeleteAccount(cust1,3);
+            BankAccount.ShowAccounts(cust1);
 
             //Console.WriteLine(cust1.m_accounts.Count
             //Console.WriteLine("Current balance is ${0}", ba.Balance);
