@@ -1,31 +1,71 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using BankCustomerNS;
 
 namespace BankAccountNS
 {
-    /// <summary>
-    /// Bank account demo class.
-    /// </summary>
     public class BankAccount
     {
-        private readonly string m_accountOwner;
-        private double m_balance;
-
-        private BankAccount() { }
-
-        public BankAccount(string accountOwner, double balance)
+        public int m_accountId;
+        public string m_accountType;
+        public string m_accountOwnerName;
+        public BankCustomer m_accountOwner;
+        public double m_balance;
+        /*
+        public override string ToString()
         {
-            m_accountOwner = accountOwner;
+            return "BankAccount: " + m_accountOwner + " Balance: " + m_balance;
+        }
+        */
+
+        public BankAccount() { }
+
+        public BankAccount(string accountOwnerName, double balance)
+        {
+            m_accountOwnerName = accountOwnerName;
             m_balance = balance;
         }
 
-        public string CustomerName
+        public BankAccount(int accountId, string accountType, BankCustomer accountOwner, double balance)
         {
-            get { return m_accountOwner; }
+            m_accountId = accountId;
+            m_accountType = accountType;
+            m_accountOwner = accountOwner;
+            m_balance = balance;
         }
 
         public double Balance
         {
             get { return m_balance; }
+        }
+
+        public static void CreateAccount(int accountId, string accountType, BankCustomer accountOwner, double balance)
+        {
+            BankAccount account = new BankAccount(accountId, accountType, accountOwner, balance);
+            accountOwner.m_accounts.Add(account);
+        }
+
+        public static void DeleteAccount(BankCustomer accountOwner, int deleteId)
+        {
+            var accountToRemove = accountOwner.Accounts.Single(r => r.m_accountId == deleteId);
+            accountOwner.Accounts.Remove(accountToRemove);
+        }
+
+        public static void ShowAccounts(BankCustomer accountOwner)
+        {
+            foreach (BankAccount m_account in accountOwner.Accounts)
+            {
+                Console.WriteLine(accountOwner.m_customerName + " " + m_account.m_accountId + " " + m_account.m_accountType + " " + m_account.m_balance);
+            }
+        }
+
+        public static void TransferMoney(BankAccount firstAccount, BankAccount secondAccount, double transferSum)
+        {
+            firstAccount.m_balance -= transferSum;
+            secondAccount.m_balance += transferSum;
         }
 
         public void Debit(double amount)
@@ -40,7 +80,7 @@ namespace BankAccountNS
                 throw new ArgumentOutOfRangeException("amount");
             }
 
-            m_balance -= amount; 
+            m_balance -= amount;
         }
 
         public void Credit(double amount)
@@ -51,15 +91,6 @@ namespace BankAccountNS
             }
 
             m_balance -= amount;
-        }
-
-        public static void Main()
-        {
-            BankAccount ba = new BankAccount("Mr. Bryan Walton", 22.99);
-
-            ba.Credit(5.77);
-            ba.Debit(1.22);
-            Console.WriteLine("Current balance is ${0}", ba.Balance);
         }
     }
 }

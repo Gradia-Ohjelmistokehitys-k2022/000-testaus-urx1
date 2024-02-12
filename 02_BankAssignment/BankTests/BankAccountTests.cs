@@ -1,5 +1,7 @@
 using BankAccountNS;
+using BankCustomerNS;
 using System;
+using System.Security.Principal;
 
 namespace BankTests
 {
@@ -52,6 +54,114 @@ namespace BankTests
             {
                 Assert.ThrowsException<ArgumentOutOfRangeException>(() => account.Balance);
             }
+        }
+        [TestMethod]
+        public void CreateDebitAccount_WithNegativeAmount()
+        {
+            double beginningBalance = 11.99;
+
+            var cust1 = new BankCustomer
+            {
+                m_customerName = "Mr. Bryan Walton",
+                m_accounts = new List<BankAccount>()
+            };
+            
+            BankAccount.CreateAccount(1, "Debit", cust1, beginningBalance);
+
+
+            if (beginningBalance < 0)
+            {
+                Assert.ThrowsException<ArgumentOutOfRangeException>(() => beginningBalance);
+            }
+        }
+        [TestMethod]
+        public void CreateCreditAccount_WithNegativeAmount()
+        {
+
+            double beginningBalance = 234.2;
+            var cust1 = new BankCustomer
+            {
+                m_customerName = "Mr. Bryan Walton",
+                m_accounts = new List<BankAccount>()
+            };
+
+            BankAccount.CreateAccount(1, "Credit", cust1, beginningBalance);
+
+
+            if (beginningBalance < 0)
+            {
+                Assert.ThrowsException<ArgumentOutOfRangeException>(() => beginningBalance);
+            }
+        }
+        [TestMethod]
+        public void CreateAccount_WithSameId()
+        {
+            var cust1 = new BankCustomer
+            {
+                m_customerName = "Mr. Bryan Walton",
+                m_accounts = new List<BankAccount>()
+            };
+
+            BankAccount.CreateAccount(1, "Credit", cust1, 123.45);
+            BankAccount.CreateAccount(2, "Debit", cust1, 234.567);
+
+            foreach (BankAccount m_account in cust1.Accounts)
+            {
+                if (cust1.m_accounts[0].m_accountId == cust1.m_accounts[1].m_accountId)
+                Assert.ThrowsException<ArgumentOutOfRangeException>(() => cust1.m_accounts[1].m_accountId);
+            }
+        }
+        [TestMethod]
+        public void CreateAccount_WithWrongType()
+        {
+            var cust1 = new BankCustomer
+            {
+                m_customerName = "Mr. Bryan Walton",
+                m_accounts = new List<BankAccount>()
+            };
+
+            BankAccount.CreateAccount(1, "Credit", cust1, 123.45);
+            BankAccount.CreateAccount(2, "Debit", cust1, 123.45);
+
+            foreach (BankAccount m_account in cust1.Accounts)
+            {
+                if (m_account.m_accountType == "Debit" ||
+                    m_account.m_accountType == "Credit")
+                {
+                    return;
+                }
+                else
+                {
+                    Assert.ThrowsException<ArgumentOutOfRangeException>(() => m_account.m_accountType);
+                }
+            }
+        }
+        [TestMethod]
+        public void TransferMoney_WithValidAmount_UpdatesBalance()
+        {
+
+            double expectedAcc1 = 75;
+            double expectedAcc2 = 125;
+            var cust1 = new BankCustomer
+            {
+                m_customerName = "Mr. Bryan Walton",
+                m_accounts = new List<BankAccount>()
+            };
+            
+            BankAccount.CreateAccount(1, "Credit", cust1, 123.45);
+            BankAccount.CreateAccount(2, "Debit", cust1, 123.45);
+            BankAccount.TransferMoney(cust1.m_accounts[0], cust1.m_accounts[1], 25.00D);
+
+            if (cust1.m_accounts[0].m_balance != expectedAcc1)
+            {
+                Assert.ThrowsException<ArgumentOutOfRangeException>(() => cust1.m_accounts[0].m_balance);
+            }
+            if (cust1.m_accounts[1].m_balance != expectedAcc2)
+            {
+                Assert.ThrowsException<ArgumentOutOfRangeException>(() => cust1.m_accounts[1].m_balance);
+            }
+
+
         }
     }
 }
