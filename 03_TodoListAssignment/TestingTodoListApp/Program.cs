@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using TestingTodoListApp;
+
 
 namespace TodoListNS
 {
@@ -22,14 +24,19 @@ namespace TodoListNS
             var anotherList = todoList._TodoItems; //original style of getting list
             foreach (var item in list)
             {
-                Console.WriteLine(item);
+                Console.WriteLine(item.ToString()); //vaihdettu suoraan ToString() koska recordit sallii toimivuuden näinkin
             }
-
+            
             foreach (var item in anotherList)
             {
-                Console.WriteLine(item);
+                Console.WriteLine(item.ToString());
             }
 
+            todoList.RemoveItemFromList(_tasks.item));
+            foreach (var item in list)
+            {
+                Console.WriteLine(item.ToString()); //vaihdettu suoraan ToString() koska recordit sallii toimivuuden näinkin
+            }
         }
 
     }

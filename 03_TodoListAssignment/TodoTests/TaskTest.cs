@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TodoTests
 {
-    internal class Class1
+    internal class TaskTest
     {
     }
 }

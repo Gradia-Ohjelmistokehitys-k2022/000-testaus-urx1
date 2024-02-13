@@ -29,7 +29,13 @@ namespace TestingTodoListApp
             _tasks.Add(item with { Id = _taskCounter});
 
         }
+        public void RemoveItemFromList(int idToRemove)
+        {
+            _tasks.RemoveAt(idToRemove); //miksei vaan näin???
+            //taskcounter --???
+        } 
 
+        /*
         public void RemoveItemFromList(TodoTask item)
         {
             if (_tasks.Contains(item))
@@ -39,12 +45,12 @@ namespace TestingTodoListApp
             }
 
         }
-
+        */
         public void CompleteItem(int id)
         {
             // remove the item
-            var item = _tasks.First(x => x.Id == id);
-            RemoveItemFromList(item);
+            var item = _tasks.First(x => x.Id == id); 
+            RemoveItemFromList(item); //combine with removefromlist?
         }
     }
 }

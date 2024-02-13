@@ -11,13 +11,14 @@ namespace TestingTodoListApp
     {
         
         public int Id { get; init; } //init makes property immutable which means you cannot change value with set afterwards.
-        public bool IsCompleted { get; init; }
+        public bool IsCompleted { get; init; } //can't be changed, should be able to be change??
 
-       
+        /*
         public override string ToString()
         {
             return $"Id: {Id} + Task: {TaskDescription} + Did you do it?: {IsCompleted}";
         }
+        */
     }
 
 }

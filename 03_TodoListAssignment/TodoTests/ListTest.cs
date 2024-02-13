@@ -1,7 +1,7 @@
 namespace TodoTests
 {
     [TestClass]
-    public class UnitTest1
+    public class ListTest
     {
         [TestMethod]
         public void TestMethod1()
