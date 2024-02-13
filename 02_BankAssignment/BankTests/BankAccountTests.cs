@@ -138,6 +138,7 @@ namespace BankTests
         }
         [TestMethod]
         public void TransferMoney_WithValidAmount_UpdatesBalance()
+            //huom tämä testaa myös koko polun
         {
 
             double expectedAcc1 = 75;
@@ -160,8 +161,6 @@ namespace BankTests
             {
                 Assert.ThrowsException<ArgumentOutOfRangeException>(() => cust1.m_accounts[1].m_balance);
             }
-
-
         }
     }
 }
