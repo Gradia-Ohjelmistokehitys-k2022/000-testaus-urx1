@@ -9,7 +9,7 @@ Nyt testataan, onko listassa yhtään alkiota. Mitä muita testejä keksit?
 
 namespace TestFiles
 {
-    public class File
+    public class Files
     {
 
         public static void Main(string[] args)
@@ -30,13 +30,13 @@ namespace TestFiles
             StreamReader reader = new StreamReader(directory + filePath);
             try
             {
-                do
+                while (reader.Peek() != -1) 
                 {
-                    fileContent.Add(reader.ReadLine());
+                    fileContent.Add(reader.ReadLine()); //oma muuttuja ja if not null
                 }
-                while (reader.Peek() != -1);
+               // while (reader.Peek() != -1);
             }
-            catch (FileNotFoundException e)
+            catch (FileNotFoundException)
             {
                 throw;
             }

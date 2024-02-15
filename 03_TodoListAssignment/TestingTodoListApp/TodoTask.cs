@@ -7,18 +7,26 @@ using System.Xml.Linq;
 
 namespace TestingTodoListApp
 {
-    public record TodoTask(string TaskDescription) // ota selvää recordin toiminnasta
+    public class TodoTask 
     {
         
-        public int Id { get; init; } //init makes property immutable which means you cannot change value with set afterwards.
-        public bool IsCompleted { get; init; } //can't be changed, should be able to be change??
-
-        /*
+        public int m_id { get; set; } 
+        public bool m_done { get; set; } 
+        public string m_desc { get; set; }
+        
         public override string ToString()
         {
-            return $"Id: {Id} + Task: {TaskDescription} + Did you do it?: {IsCompleted}";
+            return $"Id: {m_id} + Task: {m_desc} + Did you do it?: {m_done}";
         }
-        */
+        
+        public TodoTask() { }
+
+        public TodoTask(int id, bool done, string desc) 
+        { 
+            m_id = id ;
+            m_done = done ;
+            m_desc = desc ;
+        }
     }
 
 }

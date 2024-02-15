@@ -11,11 +11,11 @@ namespace FileTests
         public void ReadFile_ReturnsListOfSettings_IfFileIsNotEmpty()
         {
             //Arrange
-            List<string> systemConfig;
+            List<string> systemConfig = new List<string>();
             string winDir = "C:\\Windows";
             string path = "\\system.ini";
             //Act
-            systemConfig = Files.ReadFile(systemConfig, windir, path);
+            systemConfig = Files.ReadFile(systemConfig, winDir, path);
             //Assert
             Assert.IsTrue(systemConfig.Count < 0); //tarkoituksella väärin. Korjaa.
 
