@@ -21,18 +21,23 @@ namespace TodoListNS
           
             todoList.AddItemToList(new TodoTask("Wash your clothes"));
             var list = todoList.All; //for iterations
-            var anotherList = todoList._TodoItems; //original style of getting list
+            //var anotherList = todoList._TodoItems; //original style of getting list
             foreach (var item in list)
             {
                 Console.WriteLine(item.ToString()); //vaihdettu suoraan ToString() koska recordit sallii toimivuuden näinkin
             }
-            
+            /*
             foreach (var item in anotherList)
             {
                 Console.WriteLine(item.ToString());
             }
-
-            todoList.RemoveItemFromList(_tasks.item));
+            */
+            todoList.RemoveItemFromList(1);
+            foreach (var item in list)
+            {
+                Console.WriteLine(item.ToString()); //vaihdettu suoraan ToString() koska recordit sallii toimivuuden näinkin
+            }
+            todoList.CompleteItem(2);
             foreach (var item in list)
             {
                 Console.WriteLine(item.ToString()); //vaihdettu suoraan ToString() koska recordit sallii toimivuuden näinkin

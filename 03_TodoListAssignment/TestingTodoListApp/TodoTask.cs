@@ -9,9 +9,9 @@ namespace TestingTodoListApp
 {
     public class TodoTask 
     {
-        
+
         public int m_id { get; set; } 
-        public bool m_done { get; set; } 
+        public bool m_done = false; //{ get; set; } 
         public string m_desc { get; set; }
         
         public override string ToString()
@@ -20,6 +20,11 @@ namespace TestingTodoListApp
         }
         
         public TodoTask() { }
+
+        public TodoTask(string desc)
+        {
+            m_desc = desc;
+        }
 
         public TodoTask(int id, bool done, string desc) 
         { 
