@@ -10,7 +10,7 @@ AddItemToList(TodoTask item) - metodin mahdolliset testit:
     - Voiko listan maksimi ylittyä?
   
 2. public void RemoveItemFromList(TodoTask item)-metodin mahdolliset testit:
-    -Poista tehtävä listasta. Toimiiko laskuri oikein?
+    - Poista tehtävä listasta. Toimiiko laskuri oikein?
     - Poista tehtävä tyhjästä listasta.
     - Poista viimeinen tehtävä listasta.
     - Poista tietty tehtävä listasta.
@@ -27,12 +27,15 @@ AddItemToList(TodoTask item) - metodin mahdolliset testit:
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
+using System.Reflection;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using TestingTodoListApp;
 using TodoListNS;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace TodoTests
 {
@@ -79,7 +82,9 @@ namespace TodoTests
             }
             if (counter != expected)
             {
-                Assert.ThrowsException<System.ArgumentOutOfRangeException>(() => todoList.AddItemToList(new TodoTask("Test")));
+                Assert.ThrowsException<System.ArgumentOutOfRangeException>(() => counter);
+                //Assert.ThrowsException<System.ArgumentOutOfRangeException>(() => todoList.AddItemToList(new TodoTask("Test")));
+
             }
         }
         [TestMethod]
@@ -103,10 +108,124 @@ namespace TodoTests
             }
             if (counter != 5)
             {
-                Assert.ThrowsException<System.ArgumentOutOfRangeException>(() => todoList.AddItemToList(new TodoTask("Test")));
+                Assert.ThrowsException<System.ArgumentOutOfRangeException>(() => counter);
+            }
+        }
+        [TestMethod]
+        public void Test_AddItem_WithSpecialChars_ThrowsException()
+        {
+            bool HasSpecialChars(string yourString)
+            {
+                return yourString.Any(ch => !char.IsLetterOrDigit(ch));
+            }
+
+
+            TodoList todoList = new();
+
+            todoList.AddItemToList(new TodoTask("asdf"));
+
+            var list = todoList.All;
+
+            foreach (var item in list)
+            {
+                if (item.m_desc.Any(ch => !char.IsLetterOrDigit(ch)))
+                {
+                    Assert.ThrowsException<System.ArgumentOutOfRangeException>(() => item.m_desc);
+                }
+            }
+        }
+        [TestMethod]
+        public void Test_ListIsEmpty_ThrowsException()
+        {
+
+            TodoList todoList = new();
+
+            todoList.AddItemToList(new TodoTask("asdf"));
+
+            var list = todoList.All;
+
+            bool isEmpty = !list.Any();
+
+            if (isEmpty)
+            {
+                Assert.ThrowsException<System.ArgumentOutOfRangeException>(() => isEmpty);
             }
         }
 
-        //duplicate ids
+        [TestMethod]
+        public void Test_ItemIsEmpty_ThrowsException()
+        {
+
+            TodoList todoList = new();
+
+            todoList.AddItemToList(new TodoTask(1, false, "asdf"));
+
+            var list = todoList.All;
+
+            foreach (var item in list)
+            {
+               if (item.m_done is null || item.m_id is null || item.m_desc is null)
+                {
+                    Assert.ThrowsException<System.ArgumentNullException>(() => item);
+                }
+            }
+        }
+
+        [TestMethod]
+        public void Test_AddItem_ListHasTrueTasks()
+        {
+            TodoList todoList = new();
+
+            todoList.AddItemToList(new TodoTask(1, false, "asdf"));
+
+            var list = todoList.All;
+
+                todoList.AddItemToList(new TodoTask(2, false, "asdff"));
+
+                foreach (var item in list)
+                {
+                    if (item.m_done is true)
+                    {
+                        throw new ArgumentOutOfRangeException("Can't add new item when list has item that is Done.");
+
+                    }
+                }            
+        }
+        //- Listassa on jo valmiita arvoja.
+        [TestMethod]
+        public void Test_AddItem_ListIsFull_ThrowsException()
+        {
+            int maxCap = 20; //oikea raja on 2gb dataa, luodaan omarajoite
+
+            int counter = 0;
+
+            TodoList todoList = new();
+
+            todoList.AddItemToList(new TodoTask("asdf"));
+
+            foreach (int value in Enumerable.Range(1,19))
+            {
+                counter++;
+                todoList.AddItemToList(new TodoTask("asdf"));
+            }
+
+            var list = todoList.All;
+
+            if (counter > 20)
+            {
+                Assert.ThrowsException<System.ArgumentOutOfRangeException>(() => counter);
+            }
+        }
+        //ADD ITEM WITH duplicate ids
+
+        /*
+         * REMOVE TESTIT
+        - Poista tehtävä listasta. Toimiiko laskuri oikein?
+        - Poista tehtävä tyhjästä listasta.
+        - Poista viimeinen tehtävä listasta.
+        - Poista tietty tehtävä listasta.
+        - Poista tehtävä, jota ei ole olemassa.
+        - Poista useampi tehtävä peräkkäin.
+         */
     }
 }

@@ -11,8 +11,8 @@ namespace TestingTodoListApp
     {
 
         public int? m_id { get; set; } 
-        public bool m_done = false; //{ get; set; } 
-        public string m_desc { get; set; }
+        public bool? m_done { get; set; } 
+        public string? m_desc { get; set; }
         
         public override string ToString()
         {
