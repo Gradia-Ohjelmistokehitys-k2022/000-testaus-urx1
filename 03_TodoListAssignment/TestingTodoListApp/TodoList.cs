@@ -45,7 +45,15 @@ namespace TestingTodoListApp
 
         public void RemoveLastItemFromList()
         {
-            _tasks.RemoveAt(_taskCounter-1);
+            if (_tasks.Count <= _taskCounter - 1)
+            {
+                throw new Exception("Error: Last item does not exist.");
+            }
+            else
+            {
+                _tasks.RemoveAt(_taskCounter - 1);
+            }
+
         }
 
         public void CompleteItem(int id)

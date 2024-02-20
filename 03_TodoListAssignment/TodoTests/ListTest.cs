@@ -135,6 +135,7 @@ namespace TodoTests
                 }
             }
         }
+
         [TestMethod]
         public void Test_ListIsEmpty_ThrowsException()
         {
@@ -244,7 +245,6 @@ namespace TodoTests
                     Assert.ThrowsException<System.ArgumentOutOfRangeException>(() => item.m_id);
                 }
             }
-
         }
 
         [TestMethod]
@@ -289,19 +289,53 @@ namespace TodoTests
             {
                 counter++;
             }
-
-
         }
-        //ADD ITEM WITH duplicate ids
 
-        /*
-         * REMOVE TESTIT
-        - Poista teht‰v‰ listasta. Toimiiko laskuri oikein?
-        - Poista teht‰v‰ tyhj‰st‰ listasta.
-        - Poista viimeinen teht‰v‰ listasta.
-        - Poista tietty teht‰v‰ listasta.
-        - Poista teht‰v‰, jota ei ole olemassa.
-        - Poista useampi teht‰v‰ per‰kk‰in.
-         */
+        [TestMethod]
+        public void Test_RemoveItem_FromEmptyList_ThrowsException()
+        {
+
+            TodoList todoList = new();
+
+            todoList.AddItemToList(new TodoTask("Terve"));
+
+            var list = todoList.All;
+
+            todoList.RemoveLastItemFromList();
+
+            foreach (var item in list)
+                if (item is null)
+                {
+                    throw new Exception("Item to delete does not exist, is list empty?");
+                }
+                else
+                {
+                    todoList.RemoveLastItemFromList();
+                }
+        }
+
+        [TestMethod]
+        public void Test_RemoveMultipleItems_WithDifferentFunctions_Works()
+        { 
+            TodoList todoList = new();
+
+            todoList.AddItemToList(new TodoTask("Terve"));
+            todoList.AddItemToList(new TodoTask(false, "Termos"));
+            todoList.AddItemToList(new TodoTask("P‰iv‰‰"));
+
+            var list = todoList.All;
+
+            todoList.RemoveItemFromList(1);
+            //todoList.RemoveLastItemFromList();
+
+            foreach (var item in list)
+            {
+                if (item.m_id == 1 && item.m_id == 3)
+                {
+                    throw new Exception("All items not deleted");
+                }
+            }
+        }
+
     }
 }
