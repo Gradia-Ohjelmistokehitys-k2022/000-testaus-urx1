@@ -337,5 +337,12 @@ namespace TodoTests
             }
         }
 
+        /*
+        3. public void CompleteItem(int id)-metodin mahdolliset testit:
+        -Merkitse tehtävä tehdyksi id:n perusteella. 
+        -Merkitse listan viimeinen tehtävä tehdyksi.
+        - Merkitse tehtävä, jota ei ole olemassa tehdyksi.
+        */
+
     }
 }
