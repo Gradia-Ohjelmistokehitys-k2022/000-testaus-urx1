@@ -20,6 +20,7 @@ namespace TodoListNS
             todoList.AddItemToList(new TodoTask("Do the dishes"));
           
             todoList.AddItemToList(new TodoTask("Wash your clothes"));
+            todoList.AddItemToList(new TodoTask(111, false, "Haista helevetti"));
             var list = todoList.All; //for iterations
             //var anotherList = todoList._TodoItems; //original style of getting list
             foreach (var item in list)

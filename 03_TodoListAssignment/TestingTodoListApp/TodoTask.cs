@@ -10,7 +10,7 @@ namespace TestingTodoListApp
     public class TodoTask 
     {
 
-        public int m_id { get; set; } 
+        public int? m_id { get; set; } 
         public bool m_done = false; //{ get; set; } 
         public string m_desc { get; set; }
         
@@ -23,6 +23,12 @@ namespace TestingTodoListApp
 
         public TodoTask(string desc)
         {
+            m_desc = desc;
+        }
+
+        public TodoTask(bool done, string desc)
+        {
+            m_done = done;
             m_desc = desc;
         }
 

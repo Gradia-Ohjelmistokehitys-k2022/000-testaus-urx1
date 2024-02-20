@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,8 +26,13 @@ namespace TestingTodoListApp
         }
         public void AddItemToList(TodoTask item)
         {
-            _taskCounter++;
-            item.m_id = _taskCounter;
+            if (item.m_id is null)
+            {
+                _taskCounter++;
+                item.m_id = _taskCounter;
+                _tasks.Add(item);
+            }
+            else
             _tasks.Add(item);
         }
         public void RemoveItemFromList(int idToRemove)

@@ -40,7 +40,7 @@ namespace TodoTests
     public class ListTest
     {
         [TestMethod]
-        public void Test_AddItemToList()
+        public void Test_AddItem()
         {
             int counter = 0;
 
@@ -58,8 +58,55 @@ namespace TodoTests
             {
                 Assert.ThrowsException<System.ArgumentOutOfRangeException>(() => todoList.AddItemToList(new TodoTask("Test")));
             }
-            
-
         }
+        public void Test_AddItems()
+        {
+            int counter = 0;
+
+            int expected = 3;
+
+            TodoList todoList = new();
+
+            todoList.AddItemToList(new TodoTask("Test"));
+            todoList.AddItemToList(new TodoTask("Test2"));
+            todoList.AddItemToList(new TodoTask("Test3"));
+
+            var list = todoList.All;
+
+            foreach (var item in list)
+            {
+                counter++;
+            }
+            if (counter != expected)
+            {
+                Assert.ThrowsException<System.ArgumentOutOfRangeException>(() => todoList.AddItemToList(new TodoTask("Test")));
+            }
+        }
+        [TestMethod]
+        public void Test_AddItems_WithDifferentValues()
+        {
+            int counter = 0;
+
+            TodoList todoList = new();
+
+            todoList.AddItemToList(new TodoTask("Test"));
+            todoList.AddItemToList(new TodoTask(true, "Test2"));
+            todoList.AddItemToList(new TodoTask(false, "Test3"));
+            todoList.AddItemToList(new TodoTask(23, false, "Test4"));
+            todoList.AddItemToList(new TodoTask());
+
+            var list = todoList.All;
+
+            foreach (var item in list)
+            {
+                counter++;
+            }
+            if (counter != 5)
+            {
+                Assert.ThrowsException<System.ArgumentOutOfRangeException>(() => todoList.AddItemToList(new TodoTask("Test")));
+            }
+        }
+
+        //duplicate ids
     }
 }
