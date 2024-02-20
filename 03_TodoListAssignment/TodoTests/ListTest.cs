@@ -29,6 +29,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Reflection;
 using System.Security.Principal;
 using System.Text;
@@ -215,6 +216,81 @@ namespace TodoTests
             {
                 Assert.ThrowsException<System.ArgumentOutOfRangeException>(() => counter);
             }
+        }
+
+        [TestMethod]
+        public void Test_AddItem_WithSameID_ThrowsException()
+        {
+            TodoList todoList = new();
+            
+            todoList.AddItemToList(new TodoTask(1, false, "asdf"));
+
+            var list = todoList.All;
+            
+            todoList.AddItemToList(new TodoTask(2, false, "böö"));
+
+            int counter = 0;
+
+            List<int> checkList = new List <int>();
+            checkList.Add(0);
+
+            foreach (var item in list)
+            {
+                counter++;
+                var itemToAdd = item.m_id.Value;
+                checkList.Add(itemToAdd);
+                if (item.m_id == checkList[counter-1])
+                {
+                    Assert.ThrowsException<System.ArgumentOutOfRangeException>(() => item.m_id);
+                }
+            }
+
+        }
+
+        [TestMethod]
+        public void Test_RemoveLastItem_Works()
+        {
+            TodoList todoList = new();
+            
+            todoList.AddItemToList(new TodoTask(false, "yksi"));
+            todoList.AddItemToList(new TodoTask(false, "kaksi"));
+            todoList.AddItemToList(new TodoTask(false, "kolme"));
+            todoList.AddItemToList(new TodoTask(false, "neljä"));
+
+
+            var list = todoList.All;
+
+            todoList.RemoveLastItemFromList();
+
+            foreach (var item in list)
+            {
+                if (item.m_desc == "neljä")
+                {
+                    throw new ArgumentException("Last item of list not deleted.");
+                }
+            }
+        }
+
+        [TestMethod]
+        public void Test_RemoveItem_AtRightID()
+        {
+
+            int counter = 0;
+
+            TodoList todoList = new();
+
+            todoList.AddItemToList(new TodoTask(false, "asdf"));
+            todoList.AddItemToList(new TodoTask(false, "aksdgjh"));
+            todoList.AddItemToList(new TodoTask(false, "asdddddddf"));
+
+            var list = todoList.All;
+
+            foreach (var item in list)
+            {
+                counter++;
+            }
+
+
         }
         //ADD ITEM WITH duplicate ids
 

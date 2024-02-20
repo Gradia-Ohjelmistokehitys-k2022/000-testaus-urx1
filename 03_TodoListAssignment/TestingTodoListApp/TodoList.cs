@@ -40,19 +40,14 @@ namespace TestingTodoListApp
             _tasks.RemoveAt(idToRemove-1); //miksei vaan näin???
             //taskcounter --???
             //LISÄÄ TÄHÄN SEMMONEN ETTÄ MUUTTAA YMPÄRÖIVIEN ID:T?
-        } 
-
-        /*
-        public void RemoveItemFromList(TodoTask item)
-        {
-            if (_tasks.Contains(item))
-            {
-                _tasks.Remove(item with { Id = _taskCounter-- });
-
-            }
-
         }
-        */
+
+
+        public void RemoveLastItemFromList()
+        {
+            _tasks.RemoveAt(_taskCounter-1);
+        }
+
         public void CompleteItem(int id)
         {
             foreach(var task in _tasks) 

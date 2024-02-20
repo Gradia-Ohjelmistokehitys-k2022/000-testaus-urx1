@@ -20,8 +20,8 @@ namespace TodoListNS
             todoList.AddItemToList(new TodoTask("Do the dishes"));
           
             todoList.AddItemToList(new TodoTask("Wash your clothes"));
-            todoList.AddItemToList(new TodoTask(111, false, "Haista helevetti"));
-            todoList.AddItemToList(new TodoTask());
+            todoList.AddItemToList(new TodoTask(false, "Haista helevetti"));
+            todoList.AddItemToList(new TodoTask("Minut poistetaan kohta"));
             var list = todoList.All; //for iterations
             //var anotherList = todoList._TodoItems; //original style of getting list
             foreach (var item in list)
@@ -33,13 +33,22 @@ namespace TodoListNS
             {
                 Console.WriteLine(item.ToString());
             }
-            */
-            todoList.RemoveItemFromList(1);
+            
+            //todoList.RemoveItemFromList(1);
+            
             foreach (var item in list)
             {
                 Console.WriteLine(item.ToString()); //vaihdettu suoraan ToString() koska recordit sallii toimivuuden näinkin
             }
+
             todoList.CompleteItem(2);
+            foreach (var item in list)
+            {
+                Console.WriteLine(item.ToString()); //vaihdettu suoraan ToString() koska recordit sallii toimivuuden näinkin
+            }
+            */
+
+            todoList.RemoveLastItemFromList();
             foreach (var item in list)
             {
                 Console.WriteLine(item.ToString()); //vaihdettu suoraan ToString() koska recordit sallii toimivuuden näinkin
