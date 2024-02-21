@@ -58,12 +58,16 @@ namespace TestingTodoListApp
 
         public void CompleteItem(int id)
         {
-            foreach(var task in _tasks) 
-            { 
+            foreach(var task in _tasks.Where(task => task.m_id == id))
+            {
+                task.m_done = true;
+
+                /*
                 if (task.m_id == id)
                 {
                     task.m_done = true;
                 }
+                */
             }
             /*
             // remove the item

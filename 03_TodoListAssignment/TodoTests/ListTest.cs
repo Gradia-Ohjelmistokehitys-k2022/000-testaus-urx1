@@ -337,6 +337,72 @@ namespace TodoTests
             }
         }
 
+        [TestMethod]
+        public void Test_CompleteItem_ById_Works()
+        {
+            TodoList todoList = new();
+
+            todoList.AddItemToList(new TodoTask(1, false, "Terve"));
+            todoList.AddItemToList(new TodoTask(2, false, "Termos"));
+            todoList.AddItemToList(new TodoTask(3, false, "P‰iv‰‰"));
+
+            var list = todoList.All;
+
+            bool expected = true;
+
+            todoList.CompleteItem(2);
+
+            foreach (var item in list.Where(item => item.m_id == 2)) 
+            { 
+                if (item.m_done != expected)
+                {
+                    throw new Exception("Item not completed");
+                }            
+            }
+        }
+        [TestMethod]
+        public void Test_CompleteItem_ThatDoesntExist()
+        {
+            var todoList = new TodoList();
+
+            List<int> checkList = new List<int>();
+
+            todoList.AddItemToList(new TodoTask(1, false, "Terve"));
+            todoList.AddItemToList(new TodoTask(2, false, "Termos"));
+            todoList.AddItemToList(new TodoTask(3, false, "P‰iv‰‰"));
+
+            var list = todoList.All;
+
+            int idToComp = 3;
+
+            foreach (var item in list)
+            {
+                checkList.Add((int)item.m_id);
+            }
+
+                if (checkList.Contains(idToComp))
+                {
+                    todoList.CompleteItem(idToComp);
+
+                }
+                else
+                {
+                    Assert.ThrowsException<System.ArgumentOutOfRangeException>(() => idToComp);
+                }
+
+            /*
+            if (Enumerable.Range(0, list.Count()).Contains(idToComp))
+            {
+                todoList.CompleteItem(idToComp);
+            }
+            else
+            {
+                Assert.ThrowsException<System.ArgumentOutOfRangeException>(() => idToComp);
+            }
+            */
+
+        }
+
         /*
         3. public void CompleteItem(int id)-metodin mahdolliset testit:
         -Merkitse teht‰v‰ tehdyksi id:n perusteella. 
