@@ -402,6 +402,35 @@ namespace TodoTests
             */
 
         }
+        [TestMethod]
+        public void Test_CompleteItem_AlreadyCompleted_ThrowsError()
+        {
+            var todoList = new TodoList();
+
+            List<int> checkList = new List<int>();
+
+            todoList.AddItemToList(new TodoTask(1, false, "Terve"));
+            todoList.AddItemToList(new TodoTask(2, false, "Termos"));
+            todoList.AddItemToList(new TodoTask(3, true, "Päivää"));
+
+            var list = todoList.All;
+
+            int idToComp = 2;
+
+
+
+            foreach (var item in list.Where(item => item.m_id == idToComp))
+            {
+                if (item.m_done == true)
+                {
+                    throw new Exception("Item already marked as completed.");
+                }
+                else
+                {
+                    todoList.CompleteItem(idToComp);
+                }
+            }
+        }
 
         /*
         3. public void CompleteItem(int id)-metodin mahdolliset testit:
