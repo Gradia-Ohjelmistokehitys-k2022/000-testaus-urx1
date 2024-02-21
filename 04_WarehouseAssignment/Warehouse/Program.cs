@@ -1,7 +1,7 @@
 ﻿
-using Warehouse;
+using WarehouseNS;
 
-namespace WareHouse
+namespace WarehouseNS
 
 {
     internal class Program
@@ -9,7 +9,6 @@ namespace WareHouse
         // Tee ohjelmaan yksikkötestit.
         static void Main(string[] args)
         {
-          
             WareHouse wareHouse = new();
             wareHouse.WareHouseSimulator();
         }

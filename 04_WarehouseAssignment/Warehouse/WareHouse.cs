@@ -1,13 +1,13 @@
-﻿using Warehouse;
+﻿using WarehouseNS;
 
 
-namespace WareHouse
+namespace WarehouseNS
 {
 
     public class WareHouse
     {
 
-        private List<Stock> _stockOfItems;
+        public List<Stock> _stockOfItems = new List<Stock> { }; //muutettu privatesta publiciksi
         public void WareHouseSimulator()
         {
             _stockOfItems = new();
@@ -25,10 +25,11 @@ namespace WareHouse
 
         }
 
-        public void AddToStocks(string itemName, int itemCount)
+        public void AddToStocks(string itemName, int itemCount, WareHouse wareHouse)
         {
             Stock stock = new(itemName, itemCount);
-            _stockOfItems.Add(stock);
+            wareHouse._stockOfItems.Add(stock);
+            //_stockOfItems.Add(stock); !!ALKUPERÄINEN
         }
 
         public bool InStock(string itemName)
