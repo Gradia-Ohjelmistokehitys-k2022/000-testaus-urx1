@@ -17,7 +17,7 @@ namespace WarehouseNS
             {
                 Console.WriteLine(item.Quantity);
             }
-
+            Console.WriteLine(wareHouse.InStock("pencils"));
             wareHouse.StockCount("pencils");
             //wareHouse.WareHouseSimulator();
         }

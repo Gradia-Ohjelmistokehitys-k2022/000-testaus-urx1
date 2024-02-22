@@ -81,17 +81,37 @@ namespace WarehouseTests
                 }
             }
         }
+        [TestMethod]
+        public void Test_TakeFromStock_Works()
+        {
+            WareHouse wareHouse = new();
+
+            int toAdd = 20;
+
+            wareHouse.AddToStocks("pencils", toAdd);
+
+            int toTake = 9;
+
+            int expected = toAdd - toTake;
+
+            wareHouse.TakeFromStock("pencils", toTake);
+
+            int checkQuantity;
+
+            foreach (var item in wareHouse._stockOfItems)
+            {
+                checkQuantity = item.Quantity;
+
+                if (checkQuantity != expected)
+                {
+                    throw new Exception("Wrong amount taken.");
+                }
+            }
+        }
     }
 }
 
 /*
- * 
-AddToStock:
-
-- Lis‰‰ esine, jolla on m‰‰r‰n‰ kunnollinen positiivinen arvo.
-- Lis‰‰ esine, jolla on m‰‰r‰n‰ arvo nolla.
-- Lis‰‰ esine, jolla on negatiivinen arvo.
-- Lis‰‰ esine, jolla on mielest‰si kohtuuttoman suuri arvo.
 
 InStock:
 
