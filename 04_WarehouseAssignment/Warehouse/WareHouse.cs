@@ -25,11 +25,10 @@ namespace WarehouseNS
 
         }
 
-        public void AddToStocks(string itemName, int itemCount, WareHouse wareHouse)
+        public void AddToStocks(string itemName, int itemCount)
         {
             Stock stock = new(itemName, itemCount);
-            wareHouse._stockOfItems.Add(stock);
-            //_stockOfItems.Add(stock); !!ALKUPERÄINEN
+            _stockOfItems.Add(stock);
         }
 
         public bool InStock(string itemName)
@@ -55,6 +54,8 @@ namespace WarehouseNS
         public int StockCount(string itemName)
         {
             var matches = _stockOfItems.Where(item => item.ItemName == itemName);
+            Console.WriteLine(matches.Count());
+
             return matches.Count();
         }
 

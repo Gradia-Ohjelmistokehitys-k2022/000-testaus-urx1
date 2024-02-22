@@ -6,10 +6,11 @@ namespace WarehouseTests
     public class FuncTests
     {
         [TestMethod]
-        public void Test_AddItems_WithPositiveInt()
+        public void Test_AddItems_WithPositiveQuantity()
         {
             WareHouse wareHouse = new();
-            wareHouse.AddToStocks("pencils", 200, wareHouse);
+
+            wareHouse.AddToStocks("pencils", 200);
 
 
             foreach (var item in wareHouse._stockOfItems)
@@ -17,6 +18,66 @@ namespace WarehouseTests
                 if (item.ItemName != "pencils" && item.Quantity != 200)
                 {
                     throw new Exception("Items not added to stock correctly.");
+                }
+            }
+        }
+
+        [TestMethod]
+        public void Test_AddItems_WithQuantityZero_ThrowsException()
+        {
+            WareHouse wareHouse = new();
+
+            wareHouse.AddToStocks("pencils", 0);
+
+            int checkQuantity = wareHouse.StockCount("pencils");
+
+            foreach (var item in wareHouse._stockOfItems)
+            {
+                
+            }
+            if (checkQuantity < 1)       
+            {
+                throw new Exception("Can't add when nothing to add.");
+            }
+        }
+
+        [TestMethod]
+        public void Test_AddItems_WithNegativeQuantity_ThrowsException()
+        {
+            WareHouse wareHouse = new();
+
+            wareHouse.AddToStocks("pencils", 100);
+
+            int checkQuantity = wareHouse.StockCount("pencils");
+
+            foreach (var item in wareHouse._stockOfItems)
+            {
+                checkQuantity = item.Quantity;
+            }
+            if (checkQuantity < 0)
+            {
+                throw new Exception("Can't add when nothing to add.");
+            }
+        }
+
+        [TestMethod]
+        public void Test_AddItems_BeyondMaxInt()
+        {
+            WareHouse wareHouse = new();
+
+            wareHouse.AddToStocks("pencils", 88888888);
+
+            int maxInt = 99999999;
+
+            int checkQuantity;
+
+            foreach (var item in wareHouse._stockOfItems)
+            {
+                checkQuantity = item.Quantity;
+
+                if (checkQuantity >= maxInt)
+                {
+                    throw new Exception("Cannot add such a vast quantity to stock.");
                 }
             }
         }

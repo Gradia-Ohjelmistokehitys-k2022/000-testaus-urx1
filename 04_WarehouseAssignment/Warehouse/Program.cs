@@ -10,7 +10,16 @@ namespace WarehouseNS
         static void Main(string[] args)
         {
             WareHouse wareHouse = new();
-            wareHouse.WareHouseSimulator();
+            wareHouse.AddToStocks("pencils", 2147483647);
+            wareHouse.AddToStocks("pencils", -100);
+
+            foreach (var item in wareHouse._stockOfItems)
+            {
+                Console.WriteLine(item.Quantity);
+            }
+
+            wareHouse.StockCount("pencils");
+            //wareHouse.WareHouseSimulator();
         }
     }
 }
