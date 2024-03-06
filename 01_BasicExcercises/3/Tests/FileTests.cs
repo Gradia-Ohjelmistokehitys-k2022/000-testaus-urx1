@@ -17,7 +17,7 @@ namespace FileTests
             //Act
             systemConfig = Files.ReadFile(systemConfig, winDir, path);
             //Assert
-            Assert.IsTrue(systemConfig.Count < 0); //tarkoituksella v‰‰rin. Korjaa.
+            Assert.IsTrue(systemConfig.Count > 0); //tarkoituksella v‰‰rin. Korjaa.
 
         }
 
