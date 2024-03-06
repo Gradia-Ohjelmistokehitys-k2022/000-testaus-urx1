@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Diagnostics.Metrics;
+using System.Reflection;
 
 /*
 Tee uusi solution ja projekti nimeltään FileOperations. 
@@ -18,14 +19,18 @@ namespace TestFiles
 
         private static void PrintFile(List<string> systemConfig)
         {
+            int counter = 0;
+
             foreach (var item in systemConfig)
             {
                 Console.WriteLine(item);
+                counter++;
             }
         }
 
         public static List<string> ReadFile(List<string> fileContent, string directory, string filePath)
         {
+
 
             StreamReader reader = new StreamReader(directory + filePath);
             try
@@ -47,7 +52,7 @@ namespace TestFiles
             finally
             {
                 reader.Close();
-            }
+            }            
             return fileContent;
         }
     }
