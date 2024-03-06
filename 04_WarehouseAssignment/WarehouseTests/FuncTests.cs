@@ -23,12 +23,15 @@ namespace WarehouseTests
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+
         public void Test_AddItems_WithQuantityZero_ThrowsException()
         {
             WareHouse wareHouse = new();
 
             wareHouse.AddToStocks("pencils", 0);
 
+            /*
             int checkQuantity = wareHouse.StockCount("pencils");
 
             foreach (var item in wareHouse._stockOfItems)
@@ -39,6 +42,7 @@ namespace WarehouseTests
             {
                 throw new Exception("Can't add when nothing to add.");
             }
+            */
         }
 
         [TestMethod]
@@ -183,6 +187,31 @@ namespace WarehouseTests
 
             wareHouse.AddToStocks("pencils", toAdd);
             wareHouse.StockCount("pencils");
+
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+
+        public void Test_TakeFromStock_QuantityZero()
+        {
+            WareHouse wareHouse = new();
+
+            //int toAdd = 20;
+
+            wareHouse.AddToStocks("pencils", 0);
+
+            string itemName = "pencils";
+            /*
+            foreach (var item in wareHouse._stockOfItems)
+            {
+                if (item.Quantity == 0)
+                {
+                    throw new Exception("Quantity of item in stock is zero.");
+                }
+            }
+            */
+            wareHouse.TakeFromStock(itemName, 1);
 
         }
 

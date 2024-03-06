@@ -27,6 +27,10 @@ namespace WarehouseNS
 
         public void AddToStocks(string itemName, int itemCount)
         {
+            if (itemCount <= 0)
+            {
+                throw new ArgumentException();
+            }
             Stock stock = new(itemName, itemCount);
             _stockOfItems.Add(stock);
         }
@@ -64,7 +68,7 @@ namespace WarehouseNS
 
             foreach (var item in  matches) 
             {
-                if (item.Quantity < 0)
+                if (item.Quantity <= 0)
                 {
                     throw new ArgumentException();
                 }
