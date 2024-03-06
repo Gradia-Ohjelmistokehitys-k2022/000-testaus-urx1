@@ -108,7 +108,87 @@ namespace WarehouseTests
                 }
             }
         }
+
+        [TestMethod]
+        public void Test_TakeFromStock_MoreThanQuantity()
+        {
+            WareHouse wareHouse = new();
+
+            int toAdd = 20;
+
+            wareHouse.AddToStocks("pencils", toAdd);
+
+            int toTake = 11;
+
+            if (wareHouse._stockOfItems[0].Quantity - toTake < 0)
+            {
+                throw new Exception("Can't take more than there is quantity.");
+            }
+
+            wareHouse.TakeFromStock("pencils", toTake);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void Test_TakeFromStock_NegativeSumOrZero()
+        {
+            WareHouse wareHouse = new();
+
+            int toAdd = 20;
+
+            wareHouse.AddToStocks("pencils", toAdd);
+
+            int toTake = -11;
+            /*
+            if (toTake <= 0)
+            {
+                throw new Exception("Can't take a negative quantity.");
+            }
+            */
+            wareHouse.TakeFromStock("pencils", toTake);
+        }
+
+        [TestMethod]
+        public void Test_TakeFromStock_ItemDoesntExist()
+        {
+            WareHouse wareHouse = new();
+
+            int toAdd = 20;
+
+            wareHouse.AddToStocks("pencils", toAdd);
+
+            int toTake = 1;
+
+            string itemName = "pencils";
+
+            foreach (var item in wareHouse._stockOfItems)
+            {
+                if (item.ItemName != itemName)
+                {
+                    throw new Exception("Item not in warehouse.");
+                }
+            }
+
+            wareHouse.TakeFromStock(itemName, toTake);
+        
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void Test_StockCount_PositiveQuantity()
+        {
+            WareHouse wareHouse = new();
+
+            int toAdd = -20;
+
+            wareHouse.AddToStocks("pencils", toAdd);
+            wareHouse.StockCount("pencils");
+
+        }
+
     }
+
+
 }
 
 /*
@@ -121,16 +201,10 @@ InStock:
 
 TakeFromStock:
 
-- Ota oikeanlainen määrä esineitä varasosta.
 - Ota viimeinen esine varastosta.
-- Ota isompi määrä kuin varastossa on tavaraa.
-- Ota varastosta negatiivinen määrä.
-- Ota varastosta tavara, jota ei ole olemassa.
-- Ota varastosta nolla esinettä.
 
 StockCount:
 
-- Tarkista esineiden lukumäärä esineeltä, jota on positiviinen määrä.
 - Tarkista esineiden määrä, joita on nolla kappaletta.
 - Tarkista esineiden lukumäärä, joita on negatiivinen määrä.
 

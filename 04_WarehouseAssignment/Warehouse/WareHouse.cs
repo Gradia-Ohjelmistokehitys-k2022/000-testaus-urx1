@@ -39,12 +39,18 @@ namespace WarehouseNS
         public void TakeFromStock(string itemName, int quantity)
         {
             Stock? stock = null;
+            if (quantity <= 0)
+            {
+                throw new ArgumentException();
+            }
             if (InStock(itemName))
             {
 
                 stock = _stockOfItems.FirstOrDefault(item => item.Quantity > 0);
                 stock.Quantity -= quantity;
             }
+            
+
             else
             {
                 throw new Exception("Oversold " + stock.ItemName);
@@ -55,6 +61,14 @@ namespace WarehouseNS
         {
             var matches = _stockOfItems.Where(item => item.ItemName == itemName);
             Console.WriteLine(matches.Count());
+
+            foreach (var item in  matches) 
+            {
+                if (item.Quantity < 0)
+                {
+                    throw new ArgumentException();
+                }
+            }
 
             return matches.Count();
         }
