@@ -56,8 +56,9 @@ TESTIN TULOKSET:
 -Hakutulokset tulevat nopeasti
 -Hakutulokset voi järjestää hyvin eri tavoilla, mm. hinnan mukaan ja tulossivu on ylipäänsä sommiteltu selkeästi.
 -Halvimman matkan löytäminen helppoa.
+*EI TIETOA LAIVOISTA
 
-5/5: Täysin toimiva sivu.
+4/5: Täysin toimiva sivu. Itse laivoista ei kuitenkaan juuri saa tarkempaa infoa.
 
 5. Hytti
 -Järjestelmä tarjoaa automaattisesti lemmikkiystävällistä hyttiä
