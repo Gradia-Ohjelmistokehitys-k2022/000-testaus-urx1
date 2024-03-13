@@ -41,7 +41,7 @@ TESTIN TULOKSET:
 -Kokeilen uudestaan hakua "Germany Finland", tämä toimii hyvin ja näyttää vain relevantit tulokset.
 -Ainoa reitti on Helsinki-Travemunde, valitsen tämän.
 
-4/5:
+3/5: Sisältöjen epäintuitiivinen järjestely, listan selaaminen kankeaa, haku itsessään toimiva ja hyvä
 
 3. Matkan tiedot
 -Reitin valinnan jälkeen hakupalkki muuttuu hienosti jatkotietojen täyttämiseen tarkoitettuun lomakkeeseen.
