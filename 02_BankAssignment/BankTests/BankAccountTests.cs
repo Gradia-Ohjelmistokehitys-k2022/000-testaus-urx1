@@ -136,21 +136,22 @@ namespace BankTests
                 }
             }
         }
+
         [TestMethod]
         public void TransferMoney_WithValidAmount_UpdatesBalance()
-            //huom tämä testaa myös koko polun
+            //HUOM tämä testaa myös koko polun
         {
 
-            double expectedAcc1 = 75;
-            double expectedAcc2 = 125;
+            double expectedAcc1 = 100;
+            double expectedAcc2 = 100;
             var cust1 = new BankCustomer
             {
                 m_customerName = "Mr. Bryan Walton",
                 m_accounts = new List<BankAccount>()
             };
             
-            BankAccount.CreateAccount(1, "Credit", cust1, 123.45);
-            BankAccount.CreateAccount(2, "Debit", cust1, 123.45);
+            BankAccount.CreateAccount(1, "Credit", cust1, 125);
+            BankAccount.CreateAccount(2, "Debit", cust1, 75);
             BankAccount.TransferMoney(cust1.m_accounts[0], cust1.m_accounts[1], 25.00D);
 
             if (cust1.m_accounts[0].m_balance != expectedAcc1)

@@ -214,27 +214,6 @@ namespace WarehouseTests
             wareHouse.TakeFromStock(itemName, 1);
 
         }
-
     }
-
-
 }
 
-/*
-
-InStock:
-
-- Tarkista onko esinett‰ varastossa positiivinen m‰‰r‰ (esim. datarown:n avulla).
-- Tarkista onko varastossa esine m‰‰r‰ll‰ nolla.
-- Tarkasta voiko esinett‰ olla varastossa negatiivinen m‰‰r‰.
-
-TakeFromStock:
-
-- Ota viimeinen esine varastosta.
-
-StockCount:
-
-- Tarkista esineiden m‰‰r‰, joita on nolla kappaletta.
-- Tarkista esineiden lukum‰‰r‰, joita on negatiivinen m‰‰r‰.
-
-*/
