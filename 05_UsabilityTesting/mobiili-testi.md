@@ -62,8 +62,9 @@ Arvio:
 -Sovellus toimii nopeasti ja on pääosin selkeästi sommiteltu
 -Hakupalkki on mobiiliversiossa huono, ei kuvia, tekee hakemisen hankalaksi ellei tiedä tarkalleen mitä etsii
 -Ostoskori takkuili hieman
+-Kokemus selkeästi selainversiota huonompi
 
-3/5
+2/5
 
 
 VAIHE 2 TULOKSET:
@@ -104,5 +105,6 @@ Arvio:
 -Rumpumikrofoneilla (ja muilla instrumenttimikrofoneilla) olisi voinut olla omat kategoriat jo aiemmassa 'Mikrofonit' -kategorialistauksessa
 -Mahdollisuudet rajata tuotevalikoimaa erinomaiset
 -Sovellus toimii kokonaisuutena nopeasti
+-Kokemus yhtä hyvä ellei parempi kuin selainversiossa
 
 4/5
